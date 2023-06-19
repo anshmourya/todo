@@ -8,14 +8,16 @@ export const ListProvider = ({ children }) => {
 
   const addList = (newlist) => {
     try {
-      let listCheck = list.some((item) => newlist.id === item.id); //check weahter the list is already available
+      if (newlist.title === "") {
+        throw new Error("List Name Can't be empty");
+      }
+
+      let listCheck = list.some((item) => newlist.id === item.id);
       if (listCheck) {
         throw new Error("Duplicate list");
-      } else if (newlist === "") {
-        throw new Error("List Name Can't be empty");
-      } else {
-        setList([...list, newlist]);
       }
+
+      setList([...list, newlist]);
     } catch (error) {
       console.error(error);
     }
