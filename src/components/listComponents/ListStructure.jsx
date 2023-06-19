@@ -27,7 +27,7 @@ const ListStructure = ({ data, onChangeFunction, isEdit }) => {
 
   const renderTodoItems = (todos) => {
     return todos.map((item, index) => (
-      <RenderList key={index} data={item} isEdit={true} />
+      <RenderList key={index} data={item} isEdit={true}  />
     ));
   };
 

@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import Inputs from "../generalComponents/inputs/Inputs";
 import Btns from "../generalComponents/Buttons/Btns";
 import { AiTwotoneDelete } from "react-icons/ai";
-const TodoItem = ({ title, desc, onChangeFunction, onKeyDown }) => {
+import { ListData } from "../../hooks/ListContext";
+const TodoItem = ({ title, desc, onChangeFunction, onKeyDown, data }) => {
+  const { removeTodo } = useContext(ListData);
   return (
     <>
       <div className="flex border-b border-gray-400">
@@ -14,7 +17,13 @@ const TodoItem = ({ title, desc, onChangeFunction, onKeyDown }) => {
           onChangeFunction={onChangeFunction}
           onKeyDown={onKeyDown}
         />
-        <Btns title={<AiTwotoneDelete />} buttonStyle={"flex-1 text-xl"} />
+        {data && (
+          <Btns
+            title={<AiTwotoneDelete />}
+            buttonStyle={"flex-1 text-xl"}
+            onClickFunction={() => removeTodo(data)}
+          />
+        )}
       </div>
 
       <textarea

@@ -23,6 +23,7 @@ const RenderList = ({ data }) => {
           desc={editTodo.desc}
           onChangeFunction={(e) => handleChange(e, editTodo, setEditTodo)}
           onKeyDown={handleKeyDown}
+          data={data}
         />
       </div>
     </>
