@@ -12,6 +12,11 @@ const RenderList = ({ data }) => {
   });
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
+      if (e.shiftKey || e.ctrlKey) {
+        // Ignore key combinations such as Shift + Enter or Ctrl + Enter
+        return;
+      }
+      //editing the existing todo available on the list.
       handelTodo(editTodo, true);
     }
   };
