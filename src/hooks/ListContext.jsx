@@ -3,7 +3,9 @@ import { createContext, useState, useEffect } from "react";
 export const ListData = createContext();
 
 export const ListProvider = ({ children }) => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(
+    JSON.parse(localStorage.getItem("list")) || []
+  );
   //function to add lsit and check weather the list exist ot not
 
   const addList = (newlist) => {
@@ -69,7 +71,7 @@ export const ListProvider = ({ children }) => {
 
   //check list after every list function invoke
   useEffect(() => {
-    console.log(list);
+    localStorage.setItem("list", JSON.stringify(list));
   }, [list]);
   return (
     <ListData.Provider value={{ addList, list, handelTodo, removeTodo }}>
